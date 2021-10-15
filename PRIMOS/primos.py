@@ -3,7 +3,7 @@
 def crear_primos():
     primos = [2]
     n = 3
-    for i in range(1, 100000):
+    for i in range(1, 1000):
 
         # Verificar si n es divisible por alguno de los primos ya encontrados
 
@@ -26,5 +26,4 @@ def crear_primos():
 
         n += 2
 
-    print(f"Estos son los números primos: {primos}")
-
+    return primos

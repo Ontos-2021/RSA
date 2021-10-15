@@ -56,14 +56,3 @@ def factorizar(numero):
 
     print(f"Estos son los divisores de {numero_inicial}: {divisores}")
     return divisores
-
-
-# Test
-
-numero_1 = 454566776
-numero_2 = 4712735456
-MCD = mcd(numero_1, numero_2)
-
-print(f"MCD: {MCD}")
-print(f"Número 1 / MCD: {numero_1 / MCD}")
-print(f"Número 2 / MCD: {numero_2 / MCD}")

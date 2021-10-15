@@ -29,5 +29,9 @@ mcd(e, pi(n))= = 1 """
 """
 
 from PRIMOS.primos import *
+from MCD.MCD import *
 
-crear_primos()
+primos = crear_primos()
+mcd = mcd(1564341, 123457284)
+
+print(mcd)
