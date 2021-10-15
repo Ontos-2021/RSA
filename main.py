@@ -21,7 +21,7 @@ pi(n) = (p-1)(q-1) = (83-1)(97-1) = (82)(96) = 7872 """
 """ Paso 4
 Luego hay que encontrar o elegir 'e'.
 El cual tiene dos condiciones
-1 < e
+1 < e < pi(n) | En un tutorial decía que era '1 < e'.
 mcd(e, pi(n))= = 1 """
 
 """ Llave pública = (e, n)
