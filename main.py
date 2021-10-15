@@ -22,7 +22,7 @@ pi(n) = (p-1)(q-1) = (83-1)(97-1) = (82)(96) = 7872 """
 """ Paso 4
 Luego hay que encontrar o elegir 'e'.
 El cual tiene dos condiciones
-1 < e < pi(n) | En un tutorial decía que era '1 < e'.
+1 < e < pi(n) y e = int | En un tutorial decía que era '1 < e'.
 mcd(e, pi(n))= = 1 """
 
 """ Llave pública = (e, n)
@@ -49,6 +49,7 @@ mcd = mcd(p, q)
 # Paso 2 | Determinar N | N = P * Q
 
 n = p * q
+print(f"Factores de N: {factorizar(n)}")
 
 print(f"N: {n}")
 
@@ -57,3 +58,15 @@ print(f"N: {n}")
 pi_n = (p - 1) * (q - 1)
 
 print(f"Pi(n): {pi_n}")
+
+# Paso 4 |
+""" Paso 4
+Luego hay que encontrar o elegir 'e'.
+El cual tiene dos condiciones
+1 < e < pi(n) y e = int | En un tutorial decía que era '1 < e'.
+mcd(e, pi(n))= = 1 """
+
+e = primos[random(int((len(primos) / 2)), len(primos))]
+
+print(f"E: {e}. Es mayor a 1 y menos a Pi(n): {1 < e < pi_n}")
+print(f"Máximo común divisor: {MCD.MCD.mcd(e, pi_n)}")
