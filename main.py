@@ -70,3 +70,9 @@ e = primos[random(int((len(primos) / 2)), len(primos))]
 
 print(f"E: {e}. Es mayor a 1 y menos a Pi(n): {1 < e < pi_n}")
 print(f"Máximo común divisor: {MCD.MCD.mcd(e, pi_n)}")
+
+# Paso 5 | Crear llave pública | Llave pública = (e, n)
+
+llave_publica = (e, n)
+
+print(f"Llave pública: (E: {llave_publica[0]}, N: {llave_publica[1]})")
