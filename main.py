@@ -36,7 +36,7 @@ from random import randint as random
 # Paso 1 | Crear P y Q
 
 primos = crear_primos()
-print(f"Random: {int((len(primos) / 2)), len(primos)}")
+
 p = primos[random(int((len(primos) / 2)), len(primos))]
 
 # Hay que asegurarse de que p y q nunca sean iguales
@@ -46,11 +46,14 @@ print(f"P: {p} Q: {q}")
 
 mcd = mcd(p, q)
 
-print(f"Máximo común múltiplo entre {p} y {q}: {mcd}")
-
 # Paso 2 | Determinar N | N = P * Q
 
 n = p * q
 
 print(f"N: {n}")
 
+# Paso 3 | Determinar pi(n) | pi(n) = (P-1) * (Q-1)
+
+pi_n = (p - 1) * (q - 1)
+
+print(f"Pi(n): {pi_n}")
