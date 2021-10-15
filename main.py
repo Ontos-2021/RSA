@@ -37,11 +37,12 @@ from random import randint as random
 
 primos = crear_primos()
 
-p = primos[random(int((len(primos) / 2)), len(primos))]
+p = primos[random(int((len(primos) / 2)), len(primos) - 1)]
 
 # Hay que asegurarse de que p y q nunca sean iguales
-q = primos[random(int((len(primos) / 2)), len(primos))]
-
+q = primos[random(int((len(primos) / 2)), len(primos) - 1)]
+# p = 83
+# q = 97
 print(f"P: {p} Q: {q}")
 
 mcd = mcd(p, q)
@@ -66,7 +67,7 @@ El cual tiene dos condiciones
 1 < e < pi(n) y e = int | En un tutorial decía que era '1 < e'.
 mcd(e, pi(n))= = 1 """
 
-e = primos[random(int((len(primos) / 2)), len(primos))]
+e = primos[random(int((len(primos) / 2)), len(primos) - 1)]
 
 print(f"E: {e}. Es mayor a 1 y menos a Pi(n): {1 < e < pi_n}")
 print(f"Máximo común divisor: {MCD.MCD.mcd(e, pi_n)}")
@@ -76,3 +77,33 @@ print(f"Máximo común divisor: {MCD.MCD.mcd(e, pi_n)}")
 llave_publica = (e, n)
 
 print(f"Llave pública: (E: {llave_publica[0]}, N: {llave_publica[1]})")
+
+# Paso 6 | Determinar la llave privada | Se determina por Congruencia Lineal
+
+""" 
+E * D = 1 ( mod Pi(n))
+
+-> E * D = 1 + K (P - 1) * (Q - 1)
+
+-> Fórmula: D = (1 + K * Pi(n))/ E
+
+Al parecer D tiene que ser un número entero
+
+K es un número entero y K >= 1.
+"""
+
+
+def calcular_d(k, pi_n, e):
+    d = (1 + (k * pi_n)) / e
+    return d
+
+
+d_posibles = []
+for k in range(2, 1000000):
+    d = calcular_d(k, pi_n, e)
+    if d % 1 == 0:
+        d_posibles.append((d, k))
+
+llave_privada = (d_posibles[random(0, len(d_posibles)-1)], n)
+
+print(f"Llave privada: (D: {int(llave_privada[0][0])}, N: {llave_privada[1]}")
