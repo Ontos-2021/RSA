@@ -6,6 +6,7 @@ En este caso, P y Q
 
 P = 83
 Q = 97 """
+import MCD.MCD
 
 """ Paso 2
 Una vez que tenemos P y Q, podemos determinar N.
@@ -46,3 +47,10 @@ print(f"P: {p} Q: {q}")
 mcd = mcd(p, q)
 
 print(f"Máximo común múltiplo entre {p} y {q}: {mcd}")
+
+# Paso 2 | Determinar N | N = P * Q
+
+n = p * q
+
+print(f"N: {n}")
+
