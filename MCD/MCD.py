@@ -14,7 +14,7 @@ def mcd(a, b):
                 divisores_b.remove(i)
                 break
 
-    print(f"Divisores comunes: {divisores_comunes}")
+    # print(f"Divisores comunes: {divisores_comunes}")
     maximo_comun_divisor = 1
     for divisor in divisores_comunes:
         maximo_comun_divisor = maximo_comun_divisor * divisor
@@ -54,5 +54,5 @@ def factorizar(numero):
 
         i += 1
 
-    print(f"Estos son los divisores de {numero_inicial}: {divisores}")
+    # print(f"Estos son los divisores de {numero_inicial}: {divisores}")
     return divisores

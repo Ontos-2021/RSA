@@ -50,7 +50,6 @@ mcd = mcd(p, q)
 # Paso 2 | Determinar N | N = P * Q
 
 n = p * q
-print(f"Factores de N: {factorizar(n)}")
 
 print(f"N: {n}")
 
@@ -70,7 +69,7 @@ mcd(e, pi(n))= = 1 """
 e = primos[random(int((len(primos) / 2)), len(primos) - 1)]
 
 print(f"E: {e}. Es mayor a 1 y menos a Pi(n): {1 < e < pi_n}")
-print(f"Máximo común divisor: {MCD.MCD.mcd(e, pi_n)}")
+print(f"Máximo común divisor entre E y Pi(n): {MCD.MCD.mcd(e, pi_n)}")
 
 # Paso 5 | Crear llave pública | Llave pública = (e, n)
 
@@ -106,4 +105,6 @@ for k in range(2, 1000000):
 
 llave_privada = (d_posibles[random(0, len(d_posibles)-1)], n)
 
-print(f"Llave privada: (D: {int(llave_privada[0][0])}, N: {llave_privada[1]}")
+print(f"Llave privada: (D: {int(llave_privada[0][0])}, N: {llave_privada[1]})")
+
+print(f"K: {llave_privada[0][1]}")
