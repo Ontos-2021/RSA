@@ -3,7 +3,7 @@
 def crear_primos():
     primos = [2]
     n = 3
-    for i in range(1, 1000):
+    for i in range(1, 100000):
 
         # Verificar si n es divisible por alguno de los primos ya encontrados
 

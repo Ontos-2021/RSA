@@ -30,8 +30,19 @@ mcd(e, pi(n))= = 1 """
 
 from PRIMOS.primos import *
 from MCD.MCD import *
+from random import randint as random
+
+# Paso 1 | Crear P y Q
 
 primos = crear_primos()
-mcd = mcd(1564341, 123457284)
+print(f"Random: {int((len(primos) / 2)), len(primos)}")
+p = primos[random(int((len(primos) / 2)), len(primos))]
 
-print(mcd)
+# Hay que asegurarse de que p y q nunca sean iguales
+q = primos[random(int((len(primos) / 2)), len(primos))]
+
+print(f"P: {p} Q: {q}")
+
+mcd = mcd(p, q)
+
+print(f"Máximo común múltiplo entre {p} y {q}: {mcd}")
