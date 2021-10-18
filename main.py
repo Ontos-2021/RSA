@@ -98,13 +98,28 @@ def calcular_d(k, pi_n, e):
 
 
 d_posibles = []
-for k in range(2, 1000000):
+for k in range(2, 10):
     d = calcular_d(k, pi_n, e)
     if d % 1 == 0:
-        d_posibles.append((d, k))
+        d_posibles.append([d, k])
 
-llave_privada = (d_posibles[random(0, len(d_posibles)-1)], n)
+llave_privada = (d_posibles[random(0, (len(d_posibles) - 1))], n)
 
 print(f"Llave privada: (D: {int(llave_privada[0][0])}, N: {llave_privada[1]})")
 
 print(f"K: {llave_privada[0][1]}")
+
+# Encriptar | Ci = Mi ^ E (mod n)
+mi = 5
+
+print(f"Mi: {mi}")
+ci = (mi ** llave_publica[0]) % llave_publica[1]
+print(f"Ci: {ci}")
+
+# Descencriptar | Mi = Ci ^ D (mod n)
+print(f"D: {(int(llave_privada[0][0]))}, N: {llave_privada[1]}")
+
+
+mensaje_descencriptado = (ci ** llave_privada[0][0]) % llave_privada[1]
+
+print(f"El mensaje descencriptado es: {mensaje_descencriptado}")
