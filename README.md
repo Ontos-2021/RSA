@@ -4,6 +4,25 @@ Este es un repositorio personal con el propósito de practicar algoritmos y Pyth
 En YouTube vi una serie de videos que explicaban como funcionaba el método de encriptación
 [RSA](https://es.wikipedia.org/wiki/RSA "Wikipedia") y decidí intentar hacerlo con Python.
 
+El proyecto aún no está terminado, las etapas son las siguientes.
+
+1. Determinar son números primos aleatorios
+En este caso `P` y `Q`
+
+2. Una vez que se determinan `P` y `Q`, determinamos `N`
+
+3. Luego hay que determinar `Pi(n)`
+
+4. Luego hay que encontrar o elegir `e`
+
+5. Determinar la **llava pública** y la **llave privada**
+
+6. Cifrar el mensaje 
+
+7. Descifrar el mensaje
+
+Hasta ahora he llegado hasta el paso 6. El 7 no resulta con éxito.
+
 ### Algunos de los videos que revisé
 
 - [Derivando](https://www.youtube.com/channel/UCH-Z8ya93m7_RD02WsCSZYA "Canal de YouTube") | *Este fue el primero que ví*
