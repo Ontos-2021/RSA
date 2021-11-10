@@ -55,7 +55,7 @@ Existen dos tipos generales de encriptación, la **encriptación simétrica** y 
 
   - Una llave para encriptar el mensaje (**La llave pública**)
   - Y una llave para desencriptar el mensaje (**La llave privada**)
----
+
 ## La llave privada y la llave pública
 
 ### Estas dos llaves se determinan en conjunto
@@ -78,12 +78,12 @@ su **llave privada** para *desencriptar* el mensaje.
 
 Resumiendo el proceso sería el siguiente:
 
-- Pedro comparte su **llave pública**
+- **Pedro** comparte su **llave pública** con quién quiere que se comunique con él
+- Esta persona encripta el mensaje con esta **llave pública**
+- Esta persona le envía el mensaje cifrado y su *propia **llave pública*** para que luego le respondan
+- **Pedro** descifra el mensaje con su **llave privada**
+- Luego le contesta a su destinatario encriptando un mensaje con su **llave pública** y así se repite el proceso.
 
-
-
----
-##
 
 
 
