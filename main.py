@@ -1,110 +1,79 @@
-# Acá estará el main
+import math
+from random import randint
+from PRIMOS.primos import crear_primos  # Importa la función para generar números primos
+from MCD.MCD import mcd  # Importa la función para calcular el máximo común divisor
 
-""" Paso 1
-Primero, hay que elegir dós números primos aleatorios
-En este caso, P y Q
 
-P = 83
-Q = 97 """
-import MCD.MCD
+def elegir_primo(primos, pi_n=None):
+    """
+    Selecciona un número primo al azar de la lista de primos.
+    Si pi_n se proporciona, asegura que el MCD del número primo seleccionado y pi_n sea 1.
 
-""" Paso 2
-Una vez que tenemos P y Q, podemos determinar N.
-La ecuación es N = P * Q
+    Args:
+        primos (list): Lista de números primos.
+        pi_n (int, opcional): Valor de pi(n) para validar el MCD. Si no se proporciona, se ignora la validación.
 
-N = P * Q = (83) * (97) = 8051 """
+    Returns:
+        int: Número primo seleccionado.
+    """
+    while True:
+        primo = primos[randint(len(primos) // 2, len(primos) - 1)]  # Selecciona un primo aleatorio de la mitad superior
+        if pi_n is None or mcd(primo, pi_n) == 1:  # Verifica la condición del MCD si se proporciona pi_n
+            return primo
 
-""" Paso 3
-Luego hay que determinar pi(n).
-El cual es
-pi(n) = (p-1)(q-1) = (83-1)(97-1) = (82)(96) = 7872 """
 
-""" Paso 4
-Luego hay que encontrar o elegir 'e'.
-El cual tiene dos condiciones
-1 < e < pi(n) y e = int | En un tutorial decía que era '1 < e'.
-mcd(e, pi(n))= = 1 """
+def calcular_d(e, pi_n):
+    """
+    Calcula el valor de 'd' para la llave privada utilizando la congruencia lineal.
 
-""" Llave pública = (e, n)
-    Llave privada = (d, n)
-"""
+    Args:
+        e (int): Componente 'e' de la llave pública.
+        pi_n (int): Valor de pi(n).
 
-from PRIMOS.primos import *
-from MCD.MCD import *
-from random import randint as random
+    Returns:
+        int: El valor de 'd' que satisface la ecuación de congruencia.
+    """
+    for k in range(1, pi_n):
+        d = (1 + k * pi_n) // e
+        if (e * d) % pi_n == 1:
+            return d
+    raise ValueError("No se pudo encontrar un valor adecuado para 'd'.")
 
-# Paso 1 | Crear P y Q
 
-primos = crear_primos()
+# Paso 1: Crear números primos P y Q
+primos = crear_primos()  # Genera una lista de números primos
 
-p = primos[random(int((len(primos) / 2)), len(primos) - 1)]
+# Selecciona dos números primos P y Q
+p = elegir_primo(primos)
+q = elegir_primo(primos)
 
-# Hay que asegurarse de que p y q nunca sean iguales
-q = primos[random(int((len(primos) / 2)), len(primos) - 1)]
-# p = 83
-# q = 97
-print(f"P: {p} Q: {q}")
+while p == q:  # Asegura que P y Q sean diferentes
+    q = elegir_primo(primos)
 
-mcd = mcd(p, q)
+print(f"P: {p}, Q: {q}")
 
-# Paso 2 | Determinar N | N = P * Q
-
+# Paso 2: Calcular N = P * Q
 n = p * q
+print(f"N (P * Q): {n}")
 
-print(f"N: {n}")
-
-# Paso 3 | Determinar pi(n) | pi(n) = (P-1) * (Q-1)
-
+# Paso 3: Calcular pi(n) = (P-1) * (Q-1)
 pi_n = (p - 1) * (q - 1)
-
 print(f"Pi(n): {pi_n}")
 
-# Paso 4 |
-""" Paso 4
-Luego hay que encontrar o elegir 'e'.
-El cual tiene dos condiciones
-1 < e < pi(n) y e = int | En un tutorial decía que era '1 < e'.
-mcd(e, pi(n))= = 1 """
-
-e = primos[random(int((len(primos) / 2)), len(primos) - 1)]
-
+# Paso 4: Elegir 'e' que cumpla con 1 < e < pi(n) y mcd(e, pi(n)) = 1
+e = elegir_primo(primos, pi_n)  # Selecciona 'e' que cumple con la condición
 print(f"E: {e}. Es mayor a 1 y menos a Pi(n): {1 < e < pi_n}")
-print(f"Máximo común divisor entre E y Pi(n): {MCD.MCD.mcd(e, pi_n)}")
 
-# Paso 5 | Crear llave pública | Llave pública = (e, n)
-
+# Paso 5: Generar llave pública (e, n)
 llave_publica = (e, n)
-
 print(f"Llave pública: (E: {llave_publica[0]}, N: {llave_publica[1]})")
 
-# Paso 6 | Determinar la llave privada | Se determina por Congruencia Lineal
+# Paso 6: Calcular 'd' para la llave privada utilizando congruencia lineal
+d = calcular_d(e, pi_n)
+llave_privada = (d, n)
+print(f"Llave privada: (D: {llave_privada[0]}, N: {llave_privada[1]})")
 
-""" 
-E * D = 1 ( mod Pi(n))
-
--> E * D = 1 + K (P - 1) * (Q - 1)
-
--> Fórmula: D = (1 + K * Pi(n))/ E
-
-Al parecer D tiene que ser un número entero
-
-K es un número entero y K >= 1.
-"""
-
-
-def calcular_d(k, pi_n, e):
-    d = (1 + (k * pi_n)) / e
-    return d
-
-
-d_posibles = []
-for k in range(2, 1000000):
-    d = calcular_d(k, pi_n, e)
-    if d % 1 == 0:
-        d_posibles.append((d, k))
-
-llave_privada = (d_posibles[random(0, len(d_posibles)-1)], n)
-
-print(f"Llave privada: (D: {int(llave_privada[0][0])}, N: {llave_privada[1]})")
-
-print(f"K: {llave_privada[0][1]}")
+# Resultados finales
+print(f"Generación de Llaves RSA completada.")
+print(f"Llave Pública: (e={llave_publica[0]}, n={llave_publica[1]})")
+print(f"Llave Privada: (d={llave_privada[0]}, n={llave_privada[1]})")

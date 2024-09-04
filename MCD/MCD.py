@@ -1,58 +1,39 @@
-# Acá se calculará el mínimo común múltiplo entre dos números
-
 def mcd(a, b):
-    divisores_a = factorizar(a)
+    """
+    Calcula el Máximo Común Divisor (MCD) entre dos números usando el Algoritmo de Euclides.
 
-    divisores_b = factorizar(b)
+    Args:
+        a (int): Primer número.
+        b (int): Segundo número.
 
-    divisores_comunes = []
-
-    for i in divisores_a:
-        for j in divisores_b:
-            if i == j:
-                divisores_comunes.append(i)
-                divisores_b.remove(i)
-                break
-
-    # print(f"Divisores comunes: {divisores_comunes}")
-    maximo_comun_divisor = 1
-    for divisor in divisores_comunes:
-        maximo_comun_divisor = maximo_comun_divisor * divisor
-
-    return maximo_comun_divisor
+    Returns:
+        int: El MCD de a y b.
+    """
+    while b != 0:
+        a, b = b, a % b  # Actualiza a con b y b con el residuo de a/b
+    return a
 
 
 def factorizar(numero):
-    divisores = [1]
+    """
+    Calcula los factores primos de un número.
 
-    numero_inicial = numero
+    Args:
+        numero (int): Número a factorizar.
 
+    Returns:
+        list: Lista de factores primos del número.
+    """
+    divisores = []
     i = 2
 
-    while i <= numero:
-
-        if numero % i == 0:
+    while i * i <= numero:  # Solo es necesario verificar hasta la raíz cuadrada del número
+        while numero % i == 0:
             divisores.append(i)
-
-            listo = False
-            numero = numero / i
-            while not listo:
-
-                if numero % i == 0:
-                    divisores.append(i)
-                    numero = numero / i
-                else:
-                    listo = True
-
-        producto = 1
-
-        for divisor in divisores:
-            producto = producto * divisor
-
-        if producto >= numero_inicial:
-            break
-
+            numero //= i  # Actualiza el número dividiéndolo por el factor encontrado
         i += 1
 
-    # print(f"Estos son los divisores de {numero_inicial}: {divisores}")
+    if numero > 1:  # Si queda algún factor primo mayor que la raíz cuadrada
+        divisores.append(numero)
+
     return divisores
